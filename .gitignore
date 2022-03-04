@@ -1,0 +1,16 @@
+target
+tmp
+*.log
+*.o
+*.a
+*.so
+*.so.*
+**/*_u.c
+**/*_u.h
+**/*_t.c
+**/*_t.h
+*.env*
+/bin/**/*
+!/bin/readme.txt
+*.bin
+/key.pem

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# @cmd
+# @option -m --mode[=dev|pre|prod]
+build() {
+    if [[  $argc_mode == "prod" ]]; then
+        SGX_DEBUG=0 SGX_MODE=HW make
+    elif [[ $argc_mode == "pre" ]]; then
+        SGX_DEBUG=1 SGX_MODE=HW make
+    else
+        SGX_DEBUG=1 SGX_MODE=SW make
+    fi
+}
+
+# @cmd
+# @arg args*
+run() {
+    source /opt/sgxsdk/environment
+    pushd bin
+    ./app
+    popd
+}
+
+# @cmd
+clean() {
+    make clean
+}
+
+eval "$(argc -e $0 "$@")"
